@@ -9,10 +9,27 @@ import static org.junit.jupiter.api.Assertions.*;
 class SaudacaoUtilTest {
 
     @Test
-    @Disabled("nao funcional")
-    public void saudar(){
+    public void saudarComBomDia(){
         String saudacao = SaudacaoUtil.saudar(9);
         assertEquals("Bom dia",saudacao,"Saudação incorreto");
+    }
+
+    @Test
+    public void saudarComBoaTarde(){
+        String saudacao = SaudacaoUtil.saudar(15);
+        assertEquals("Boa tarde",saudacao,"Saudação incorreto");
+    }
+
+    @Test
+    public void saudarComBoaNoite(){
+        String saudacao = SaudacaoUtil.saudar(22);
+        assertEquals("Boa noite",saudacao,"Saudação incorreto");
+    }
+
+    @Test
+    public void saudarComBoaNoiteas4h(){
+        String saudacao = SaudacaoUtil.saudar(4);
+        assertEquals("Boa noite",saudacao,"Saudação incorreto");
     }
 
     @Test
