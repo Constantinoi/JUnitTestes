@@ -3,44 +3,65 @@ package com.algaworks.junit.utilidade;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
+import static com.algaworks.junit.utilidade.SaudacaoUtil.saudar;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SaudacaoUtilTest {
 
     @Test
     public void saudarComBomDia(){
-        String saudacao = SaudacaoUtil.saudar(9);
+        //Arange
+        int horaValida = 9;
+
+        //Act
+        String saudacao = saudar(horaValida);
+
+        //Assert
         assertEquals("Bom dia",saudacao,"Saudação incorreto");
+
     }
 
     @Test
     public void saudarComBoaTarde(){
-        String saudacao = SaudacaoUtil.saudar(15);
+        int horaValida = 15;
+        String saudacao = saudar(horaValida);
         assertEquals("Boa tarde",saudacao,"Saudação incorreto");
     }
 
     @Test
     public void saudarComBoaNoite(){
-        String saudacao = SaudacaoUtil.saudar(22);
+        int horaValida = 22;
+        String saudacao = saudar(horaValida);
         assertEquals("Boa noite",saudacao,"Saudação incorreto");
     }
 
     @Test
     public void saudarComBoaNoiteas4h(){
-        String saudacao = SaudacaoUtil.saudar(4);
+        int horaValida = 4;
+        String saudacao = saudar(horaValida);
         assertEquals("Boa noite",saudacao,"Saudação incorreto");
     }
 
     @Test
     public void deveLancaException(){
-        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,()->SaudacaoUtil.saudar(-1));
+        int horaInvalida = -10;
+
+        Executable chamadaDeMetodoInvalida = ()-> saudar(horaInvalida);
+
+        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,chamadaDeMetodoInvalida);
+
         assertEquals("Hora inválida",illegalArgumentException.getMessage());
     }
 
     @Test
     public void naoDeveLancaException(){
-      assertDoesNotThrow(()->SaudacaoUtil.saudar(0));
+        int horaInvalida = 0;
+
+        Executable chamadaDeMetodoInvalida = ()-> saudar(horaInvalida);
+
+        assertDoesNotThrow(chamadaDeMetodoInvalida);
     }
 
 }
