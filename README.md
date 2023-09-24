@@ -1,1 +1,1 @@
-# alga-junit5
+Curso Algaworks utilizando Junit
